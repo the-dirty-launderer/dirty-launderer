@@ -27,7 +27,7 @@ jobs:
       with:
         credentials_json: ${{ secrets.GCP_CREDENTIALS }}
 
-    - name: Set up gcloud
+    - name: Set up gcloud CLI
       uses: google-github-actions/setup-gcloud@v1
       with:
         project_id: ${{ secrets.GCP_PROJECT_ID }}
@@ -36,6 +36,11 @@ jobs:
       run: gsutil cp dist/bot-source.zip gs://$GCS_BUCKET_NAME/
       env:
         GCS_BUCKET_NAME: ${{ secrets.GCS_BUCKET_NAME }}
+
+    - name: Install Terraform
+      uses: hashicorp/setup-terraform@v2
+      with:
+        terraform_version: 1.5.7
 
     - name: Deploy Terraform
       working-directory: terraform
