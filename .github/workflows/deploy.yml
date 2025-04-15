@@ -1,0 +1,41 @@
+name: Deploy Dirty Launderer Bot to GCP
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+
+    - name: Zip bot source code
+      run: |
+        mkdir -p dist
+        cd bot && zip -r ../dist/bot-source.zip .
+
+    - name: Set up gcloud CLI
+      uses: google-github-actions/setup-gcloud@v1
+      with:
+        project_id: ${{ secrets.GCP_PROJECT_ID }}
+        service_account_key: ${{ secrets.GCP_CREDENTIALS }}
+        export_default_credentials: true
+
+    - name: Upload bot source to GCS
+      run: gsutil cp dist/bot-source.zip gs://$GCS_BUCKET_NAME/
+
+    - name: Deploy Terraform
+      working-directory: terraform
+      run: |
+        terraform init
+        terraform apply -auto-approve \
+          -var="telegram_bot_token=${{ secrets.TELEGRAM_BOT_TOKEN }}" \
+          -var="admin_chat_id=${{ secrets.ADMIN_CHAT_ID }}"
