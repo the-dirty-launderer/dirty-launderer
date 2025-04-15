@@ -11,8 +11,7 @@ def status(update: Update, context: CallbackContext):
         data = resp.json()
         if data.get("ok"):
             webhook_url = data["result"].get("url", "No webhook set")
-            message = f"✅ Bot is running.
-🌐 Webhook URL: {webhook_url}"
+            message = f"✅ Bot is running.\n🌐 Webhook URL: {webhook_url}"
         else:
             message = "⚠️ Could not verify webhook info."
     except Exception as e:
