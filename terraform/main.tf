@@ -3,12 +3,6 @@ provider "google" {
   region  = var.region
 }
 
-resource "google_storage_bucket_object" "bot_zip" {
-  name   = "bot-source.zip"
-  bucket = var.GCS_BUCKET_NAME
-  source = var.source_archive
-}
-
 resource "google_secret_manager_secret" "bot_token_secret" {
   secret_id = "telegram-bot-token"
   project   = var.project_id
@@ -35,7 +29,7 @@ resource "google_cloudfunctions_function" "dirty_launderer_bot" {
   region      = var.region
 
   source_archive_bucket = var.GCS_BUCKET_NAME
-  source_archive_object = google_storage_bucket_object.bot_zip.name
+  source_archive_object = "bot-source.zip"  # uploaded manually
   entry_point           = "main"
   trigger_http          = true
 
