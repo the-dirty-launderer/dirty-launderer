@@ -49,4 +49,5 @@ jobs:
         terraform apply -auto-approve \
           -var="telegram_bot_token=${{ secrets.TELEGRAM_BOT_TOKEN }}" \
           -var="admin_chat_id=${{ secrets.ADMIN_CHAT_ID }}" \
-          -var="project_id=${{ secrets.GCP_PROJECT_ID }}"
+          -var="project_id=${{ secrets.GCP_PROJECT_ID }}" \
+          -var="billing_account_id=${{ secrets.BILLING_ACCOUNT_ID }}"
