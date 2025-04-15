@@ -1,0 +1,12 @@
+site_name: Dirty Launderer
+theme:
+  name: material
+
+nav:
+  - Home: index.md
+  - Deployment: deployment.md
+  - Telegram Commands: telegram_commands.md
+  - Handlers: handlers.md
+  - Cloud Functions: functions.md
+  - Firestore Reference: firestoreref.md
+  - How to Deploy: how-to-deploy.md
