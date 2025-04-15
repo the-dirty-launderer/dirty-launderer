@@ -1,6 +1,5 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-
 💃 *A lady in the streets, and clean in the sheets… of tracking parameters.* 🧼
 [![CI Build](https://github.com/the-dirty-launderer/dirty-launderer/actions/workflows/python-tests.yml/badge.svg)](https://github.com/the-dirty-launderer/dirty-launderer/actions/workflows/python-tests.yml)
 [![Docs](https://img.shields.io/badge/docs-GitHub%20Pages-blue)](https://the-dirty-launderer.github.io/dirty-launderer)
