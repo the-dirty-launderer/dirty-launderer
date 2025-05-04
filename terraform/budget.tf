@@ -1,7 +1,6 @@
-
 resource "google_billing_budget" "project_budget" {
   billing_account = var.billing_account_id
-  display_name    = "Dirty Launderer $1 Budget"
+  display_name    = "${var.environment} Dirty Launderer Budget"
 
   budget_filter {
     projects = [var.project_id]
@@ -10,7 +9,7 @@ resource "google_billing_budget" "project_budget" {
   amount {
     specified_amount {
       currency_code = "USD"
-      units         = 1
+      units         = var.budget_amount
     }
   }
 
@@ -23,16 +22,16 @@ resource "google_billing_budget" "project_budget" {
   }
 
   all_updates_rule {
-    pubsub_topic = google_pubsub_topic.budget_alert_topic.id
+    pubsub_topic   = google_pubsub_topic.budget_alert_topic.id
     schema_version = "1.0"
   }
 }
 
 resource "google_pubsub_topic" "budget_alert_topic" {
-  name = "budget-alert-topic"
+  name = "${var.environment}-budget-alert-topic"
 }
 
 resource "google_pubsub_subscription" "shutdown_trigger_sub" {
-  name  = "budget-trigger-sub"
+  name  = "${var.environment}-budget-trigger-sub"
   topic = google_pubsub_topic.budget_alert_topic.name
 }
