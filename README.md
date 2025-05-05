@@ -16,7 +16,7 @@ A privacy-first Telegram bot that automatically cleans tracking parameters from 
 - Fully admin-configurable via Telegram commands
 - PII-safe logging to Google Cloud Logging
 - Modular domain handler design
-- Cloud Functions + Firestore + Terraform + GitHub Actions
+- Cloud Functions + Firestore + Terraform + GitHub Actions 
 
 ## 📦 Repo Structure
 
