@@ -1,7 +1,8 @@
 from telegram import Update
 from telegram.ext import CallbackContext
 
-def commands(update: Update, context: CallbackContext):
+def commands(update: Update, context: CallbackContext) -> None:
+    """Send the command reference to the user."""
     message = """📖 Dirty Launderer Command Reference
 
 🔧 Admin Controls:
@@ -22,4 +23,5 @@ def commands(update: Update, context: CallbackContext):
 /ping - Basic bot ping
 /welcome - Show welcome/help message
 """
+    # Ensure no identifiable information is logged
     update.message.reply_text(message)

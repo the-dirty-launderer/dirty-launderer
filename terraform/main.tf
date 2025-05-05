@@ -12,6 +12,9 @@ resource "google_secret_manager_secret" "bot_token_secret" {
       replicas {
         location = var.region
       }
+      replicas {
+        location = "us-central1" # Add additional replicas for high availability
+      }
     }
   }
 }
@@ -29,7 +32,7 @@ resource "google_cloudfunctions_function" "dirty_launderer_bot" {
   region      = var.region
 
   source_archive_bucket = var.GCS_BUCKET_NAME
-  source_archive_object = "bot-source.zip"  # uploaded manually
+  source_archive_object = var.bot_source_archive
   entry_point           = "main"
   trigger_http          = true
 
@@ -37,4 +40,15 @@ resource "google_cloudfunctions_function" "dirty_launderer_bot" {
     TELEGRAM_TOKEN = var.telegram_bot_token
     ADMIN_CHAT_ID  = var.admin_chat_id
   }
+
+  timeout            = 60
+  available_memory_mb = 256
+}
+
+resource "google_cloudfunctions_function_iam_member" "invoker" {
+  project        = var.project_id
+  region         = var.region
+  cloud_function = google_cloudfunctions_function.dirty_launderer_bot.name
+  role           = "roles/cloudfunctions.invoker"
+  member         = "allUsers" # Replace with a specific service account if needed
 }

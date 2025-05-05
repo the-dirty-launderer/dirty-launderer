@@ -1,14 +1,11 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-
-
-💃 *A lady in the streets, and clean in the sheets… of tracking parameters.* 🧼
 [![CI Build](https://github.com/the-dirty-launderer/dirty-launderer/actions/workflows/python-tests.yml/badge.svg)](https://github.com/the-dirty-launderer/dirty-launderer/actions/workflows/python-tests.yml)
 [![Docs](https://img.shields.io/badge/docs-GitHub%20Pages-blue)](https://the-dirty-launderer.github.io/dirty-launderer)
 [![Version](https://img.shields.io/badge/version-1.0.0-blue)](#)
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-
 # Dirty Launderer 🧼
+
+💃 *A lady in the streets, and clean in the sheets… of tracking parameters.* 🧼
 
 A privacy-first Telegram bot that automatically cleans tracking parameters from URLs, and proxies uncleanable links using services like Invidious, Nitter, Libreddit, and more.
 
